@@ -1,5 +1,10 @@
 # Documento de Requisitos para o Sistema de Catálogo de Filmes
-
+## 0. Instruções para rodar
+Primeiramente é necessario entrar na pasta infra e rodar o docker-compose.yml com o comando:
+``` bash
+docker-compose up -d
+```
+após feito isso é possível rodar a aplicação, podendo usar a IDE de sua preferencia.
 ## 1. Introdução
 
 O objetivo deste documento é definir os requisitos para o desenvolvimento de um sistema de catálogo de filmes, assemelhando-se ao IMDB. O sistema permitirá o cadastro de filmes, atores e diretores, associando filmes a seus respectivos profissionais. A aplicação será desenvolvida utilizando conceitos de programação orientada a objetos, como encapsulamento, herança, polimorfismo e classes abstratas.
