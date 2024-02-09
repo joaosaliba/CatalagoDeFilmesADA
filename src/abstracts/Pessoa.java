@@ -1,5 +1,7 @@
 package abstracts;
 
+import enums.TipoPessoa;
+
 import java.time.LocalDate;
 
 public abstract class Pessoa {
@@ -14,14 +16,18 @@ public abstract class Pessoa {
     private LocalDate dataNascimento;
     private String nascionalidade;
 
+    private TipoPessoa tipoPessoa;
+
     public Pessoa() {
     }
 
-    public Pessoa(String nome, LocalDate dataNascimento, String nascionalidade) {
+    public Pessoa(String nome, LocalDate dataNascimento, String nascionalidade, TipoPessoa tipoPessoa) {
         this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.nascionalidade = nascionalidade;
+        this.tipoPessoa = tipoPessoa;
+
     }
 
 
@@ -55,5 +61,23 @@ public abstract class Pessoa {
 
     public void setNascionalidade(String nascionalidade) {
         this.nascionalidade = nascionalidade;
+    }
+
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", nascionalidade='" + nascionalidade + '\'' +
+                '}';
     }
 }
