@@ -1,23 +1,21 @@
 CREATE SCHEMA IF NOT EXISTS catalago;
 
-CREATE TABLE IF NOT EXISTS catalago.pessoa
+
+CREATE TABLE IF NOT EXISTS catalago.ator
 (
     id               BIGSERIAL PRIMARY KEY,
     nome             VARCHAR(255) NOT NULL,
     data_nascimento  DATE,
     nacionalidade    VARCHAR(255),
-    tipo_pessoa_enum VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS catalago.ator
-(
-    id INTEGER PRIMARY KEY REFERENCES catalago.pessoa (id),
     tipo_pessoa_enum VARCHAR(50) CHECK (tipo_pessoa_enum = 'ATOR')
 );
 
 CREATE TABLE IF NOT EXISTS catalago.diretor
 (
-    id INTEGER PRIMARY KEY REFERENCES catalago.pessoa (id),
+    id               BIGSERIAL PRIMARY KEY,
+    nome             VARCHAR(255) NOT NULL,
+    data_nascimento  DATE,
+    nacionalidade    VARCHAR(255),
     tipo_pessoa_enum VARCHAR(50) CHECK (tipo_pessoa_enum = 'DIRETOR')
 );
 
