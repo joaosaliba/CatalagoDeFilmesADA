@@ -1,6 +1,6 @@
 package abstracts;
 
-import enums.TipoPessoa;
+import enums.TipoPessoaEnum;
 
 import java.time.LocalDate;
 
@@ -16,17 +16,20 @@ public abstract class Pessoa {
     private LocalDate dataNascimento;
     private String nascionalidade;
 
-    private TipoPessoa tipoPessoa;
+    private TipoPessoaEnum tipoPessoaEnum;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, LocalDate dataNascimento, String nascionalidade, TipoPessoa tipoPessoa) {
+    public Pessoa(TipoPessoaEnum tipoPessoaEnum) {
+        this.tipoPessoaEnum = tipoPessoaEnum;
+    }
+
+    public Pessoa(String nome, LocalDate dataNascimento, String nascionalidade) {
         this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.nascionalidade = nascionalidade;
-        this.tipoPessoa = tipoPessoa;
 
     }
 
@@ -63,12 +66,12 @@ public abstract class Pessoa {
         this.nascionalidade = nascionalidade;
     }
 
-    public TipoPessoa getTipoPessoa() {
-        return tipoPessoa;
+    protected TipoPessoaEnum getTipoPessoaEnum() {
+        return tipoPessoaEnum;
     }
 
-    public void setTipoPessoa(TipoPessoa tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
+    protected void setTipoPessoaEnum(TipoPessoaEnum tipoPessoaEnum) {
+        this.tipoPessoaEnum = tipoPessoaEnum;
     }
 
     @Override
@@ -78,6 +81,7 @@ public abstract class Pessoa {
                 ", nome='" + nome + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 ", nascionalidade='" + nascionalidade + '\'' +
+                ", tipoPessoa='" + tipoPessoaEnum.name() + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 package enums;
 
-public enum TipoPessoa {
+public enum TipoPessoaEnum {
     ATOR,
     DIRETOR
 }
