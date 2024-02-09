@@ -1,7 +1,7 @@
-package entities;
+package catalago.entities;
 
-import abstracts.Pessoa;
-import enums.TipoPessoaEnum;
+import catalago.abstracts.Pessoa;
+import catalago.enums.TipoPessoaEnum;
 
 import java.time.LocalDate;
 
@@ -21,6 +21,6 @@ public class Diretor extends Pessoa {
 
     @Override
     public TipoPessoaEnum getTipoPessoaEnum() {
-        return  TipoPessoaEnum.DIRETOR;
+        return TipoPessoaEnum.DIRETOR;
     }
 }

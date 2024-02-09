@@ -1,4 +1,4 @@
-package entities;
+package catalago.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

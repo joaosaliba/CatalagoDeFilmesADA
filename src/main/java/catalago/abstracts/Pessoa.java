@@ -1,6 +1,7 @@
-package abstracts;
+package catalago.abstracts;
 
-import enums.TipoPessoaEnum;
+
+import catalago.enums.TipoPessoaEnum;
 
 import java.time.LocalDate;
 
