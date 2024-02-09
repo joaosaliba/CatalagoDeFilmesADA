@@ -115,6 +115,15 @@ public class Filme {
         this.atores.remove(ator);
         return this.atores;
     }
+    public List<Diretor> addDiretor(Diretor diretor) {
+
+        this.diretores.add(diretor);
+        return this.diretores;
+    }
+    public List<Diretor> removeDiretor(Diretor diretor) {
+        this.diretores.remove(diretor);
+        return this.diretores;
+    }
 
     @Override
     public String toString() {
