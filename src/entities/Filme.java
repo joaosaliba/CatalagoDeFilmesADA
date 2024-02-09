@@ -2,14 +2,16 @@ package entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Filme {
-    private static  Integer counter=1;
+    private static Integer counter = 1;
 
-    private static Integer getAndIncrementCounter(){
+    private static Integer getAndIncrementCounter() {
         return counter++;
     }
+
     private Integer id;
     private String nome;
     private LocalDate dataLancamento;
@@ -21,9 +23,10 @@ public class Filme {
 
 
     public Filme() {
+        this.atores = new ArrayList<>();
     }
 
-    public Filme( String nome, LocalDate dataLancamento,
+    public Filme(String nome, LocalDate dataLancamento,
                  BigDecimal orcamento, String descricao) {
         this.id = getAndIncrementCounter();
         this.nome = nome;
@@ -36,7 +39,7 @@ public class Filme {
     public Filme(String nome, LocalDate dataLancamento,
                  BigDecimal orcamento, String descricao,
                  Diretor diretor, List<Ator> atores) {
-        this.id =  getAndIncrementCounter();
+        this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataLancamento = dataLancamento;
         this.orcamento = orcamento;
@@ -100,5 +103,28 @@ public class Filme {
 
     public void setAtores(List<Ator> atores) {
         this.atores = atores;
+    }
+
+    public List<Ator> addAtor(Ator ator) {
+
+        this.atores.add(ator);
+        return this.atores;
+    }
+    public List<Ator> removeAtor(Ator ator) {
+        this.atores.remove(ator);
+        return this.atores;
+    }
+
+    @Override
+    public String toString() {
+        return "Filme{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", dataLancamento=" + dataLancamento +
+                ", orcamento=" + orcamento +
+                ", descricao='" + descricao + '\'' +
+                ", diretor=" + diretor +
+                ", atores=" + atores +
+                '}';
     }
 }
