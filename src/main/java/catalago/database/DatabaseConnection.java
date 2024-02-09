@@ -7,18 +7,20 @@ import java.util.Objects;
 
 public class DatabaseConnection {
     public static Connection conexao = null;
+    private final static String url = "jdbc:postgresql://localhost:5432/catalagoFilme?currentSchema=catalago";
+    private final static String user = "catalagoFilmeADA";
+    private final static String pass = "catalagoFilmeADA";
 
-    public static Connection getConnection() {
-        if (Objects.isNull(conexao)) {
+    public static Connection getConnection() throws SQLException {
+        if (Objects.isNull(conexao) || conexao.isClosed()) {
 
             try {
                 Class.forName("org.postgresql.Driver");
-                String url = "jdbc:postgresql://localhost:5432/catalagoFilme?currentSchema=catalago";
-                String user = "catalagoFilmeADA";
-                String pass = "catalagoFilmeADA";
+                if (Objects.nonNull(conexao) && !conexao.isClosed()) {
+                    conexao.close();
+                }
                 conexao = DriverManager.getConnection(url, user, pass);
-
-                System.out.println("Conexão bem-sucedida!");
+                conexao.setAutoCommit(false);
 
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
@@ -28,5 +30,6 @@ public class DatabaseConnection {
 
         return conexao;
     }
+
 
 }
