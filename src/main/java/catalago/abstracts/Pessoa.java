@@ -77,12 +77,11 @@ public abstract class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", nascionalidade='" + nascionalidade + '\'' +
-                ", tipoPessoa='" + tipoPessoaEnum.name() + '\'' +
-                '}';
+        return  tipoPessoaEnum.name() +
+                " id=" + id +"\n" +
+                " nome='" + nome +"\n" +
+                " dataNascimento=" + dataNascimento +"\n" +
+                " nascionalidade='" + nascionalidade +"\n" +
+               "\n"  +"\n"  +"\n"  ;
     }
 }
