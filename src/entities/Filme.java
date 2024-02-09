@@ -18,11 +18,12 @@ public class Filme {
     private BigDecimal orcamento;
     private String descricao;
 
-    private Diretor diretor;
+    private List<Diretor> diretores;
     private List<Ator> atores;
 
 
     public Filme() {
+        this.diretores = new ArrayList<>();
         this.atores = new ArrayList<>();
     }
 
@@ -38,13 +39,13 @@ public class Filme {
 
     public Filme(String nome, LocalDate dataLancamento,
                  BigDecimal orcamento, String descricao,
-                 Diretor diretor, List<Ator> atores) {
+                 List<Diretor> diretores, List<Ator> atores) {
         this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataLancamento = dataLancamento;
         this.orcamento = orcamento;
         this.descricao = descricao;
-        this.diretor = diretor;
+        this.diretores = diretores;
         this.atores = atores;
 
     }
@@ -89,12 +90,12 @@ public class Filme {
         this.descricao = descricao;
     }
 
-    public Diretor getDiretor() {
-        return diretor;
+    public List<Diretor> getDiretores() {
+        return diretores;
     }
 
-    public void setDiretor(Diretor diretor) {
-        this.diretor = diretor;
+    public void setDiretores(List<Diretor> diretores) {
+        this.diretores = diretores;
     }
 
     public List<Ator> getAtores() {
@@ -123,7 +124,7 @@ public class Filme {
                 ", dataLancamento=" + dataLancamento +
                 ", orcamento=" + orcamento +
                 ", descricao='" + descricao + '\'' +
-                ", diretor=" + diretor +
+                ", diretores=" + diretores +
                 ", atores=" + atores +
                 '}';
     }
