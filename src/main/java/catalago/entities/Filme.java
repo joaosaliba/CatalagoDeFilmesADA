@@ -1,12 +1,16 @@
 package catalago.entities;
 
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Filme {
     private static Integer counter = 1;
+
+
 
     private static Integer getAndIncrementCounter() {
         return counter++;
@@ -20,7 +24,14 @@ public class Filme {
     private List<Diretor> diretores;
     private List<Ator> atores;
 
+    public Filme(ResultSet resultSet) throws SQLException {
+        this.id = resultSet.getInt("id");
+        this.nome = resultSet.getString("nome");
+        this.dataLancamento = resultSet.getDate("data_lancamento").toLocalDate();
+        this.orcamento = resultSet.getBigDecimal("orcamento");
+        this.descricao = resultSet.getString("descricao");
 
+    }
     public Filme() {
         this.diretores = new ArrayList<>();
         this.atores = new ArrayList<>();
@@ -33,7 +44,7 @@ public class Filme {
         this.dataLancamento = dataLancamento;
         this.orcamento = orcamento;
         this.descricao = descricao;
-        ;
+
     }
 
     public Filme(String nome, LocalDate dataLancamento,
@@ -124,14 +135,13 @@ public class Filme {
 
     @Override
     public String toString() {
-        return "Filme{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", dataLancamento=" + dataLancamento +
-                ", orcamento=" + orcamento +
-                ", descricao='" + descricao + '\'' +
-                ", diretores=" + diretores +
-                ", atores=" + atores +
-                '}';
+        return "Filme " +
+                "id=" + id +"\n" +
+                "nome='" + nome + "\n" +
+                "Data Lancamento=" + dataLancamento +"\n" +
+                "orcamento=" + orcamento +"\n" +
+                "descricao='" + descricao +"\n" +
+                "diretores=" + diretores +"\n" +
+                "atores=" + atores+"\n" +"\n"  ;
     }
 }
