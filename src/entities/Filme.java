@@ -17,7 +17,6 @@ public class Filme {
     private LocalDate dataLancamento;
     private BigDecimal orcamento;
     private String descricao;
-
     private List<Diretor> diretores;
     private List<Ator> atores;
 
@@ -107,7 +106,6 @@ public class Filme {
     }
 
     public List<Ator> addAtor(Ator ator) {
-
         this.atores.add(ator);
         return this.atores;
     }
@@ -116,7 +114,6 @@ public class Filme {
         return this.atores;
     }
     public List<Diretor> addDiretor(Diretor diretor) {
-
         this.diretores.add(diretor);
         return this.diretores;
     }
