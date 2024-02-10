@@ -1,7 +1,7 @@
 package catalago.repository;
 
 import catalago.database.DatabaseConnectionSingleton;
-import catalago.entities.Filme;
+import catalago.models.Filme;
 import catalago.repository.intefaces.DBInterface;
 
 import java.sql.*;
@@ -31,8 +31,6 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
         } catch (SQLException e) {
             db.rollback();
             e.printStackTrace();
-        } finally {
-            db.close();
         }
     }
 
@@ -55,9 +53,7 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar filme de id: "+filmeID, e);
-        } finally {
-            db.close();
-        }
+        } 
 
     }
     @Override
@@ -74,9 +70,7 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
             db.rollback();
             e.printStackTrace();
             throw new RuntimeException("Erro ao remover filme de id: "+filmeID, e);
-        } finally {
-            db.close();
-        }
+        } 
 
     }
 
@@ -98,9 +92,7 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar filmes", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
 
     @Override
@@ -121,9 +113,38 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar filmes", e);
-        } finally {
-            db.close();
-        }
+        } 
+    }
+    public void associateFilmeAndAtor(Integer filmeId, Integer atorId) throws SQLException {
+        String sql = "INSERT INTO filme_ator (filme_id,ator_id) VALUES (?, ?)";
+
+        PreparedStatement statement = db.prepareStatement(sql);
+        try {
+            statement.setInt(1, filmeId);
+            statement.setInt(2, atorId);
+
+            statement.executeUpdate();
+            db.commit();
+        } catch (SQLException e) {
+            db.rollback();
+            e.printStackTrace();
+        } 
+    }
+
+    public void associateFilmeAndDiretor(Integer filmeId, Integer diretorId) throws SQLException {
+        String sql = "INSERT INTO filme_diretor (filme_id,diretor_id) VALUES (?, ?)";
+
+        PreparedStatement statement = db.prepareStatement(sql);
+        try {
+            statement.setInt(1, filmeId);
+            statement.setInt(2, diretorId);
+
+            statement.executeUpdate();
+            db.commit();
+        } catch (SQLException e) {
+            db.rollback();
+            e.printStackTrace();
+        } 
     }
 
 
