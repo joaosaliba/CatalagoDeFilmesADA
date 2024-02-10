@@ -1,4 +1,4 @@
-package catalago.database;
+package catalago.repository.intefaces;
 
 import catalago.entities.Filme;
 

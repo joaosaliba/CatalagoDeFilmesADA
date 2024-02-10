@@ -15,7 +15,7 @@ public abstract class Pessoa {
     private Integer id;
     private String nome;
     private LocalDate dataNascimento;
-    private String nascionalidade;
+    private String nacionalidade;
 
     private TipoPessoaEnum tipoPessoaEnum;
 
@@ -26,18 +26,18 @@ public abstract class Pessoa {
         this.tipoPessoaEnum = tipoPessoaEnum;
     }
 
-    public Pessoa(String nome, LocalDate dataNascimento, String nascionalidade) {
+    public Pessoa(String nome, LocalDate dataNascimento, String nacionalidade) {
         this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.nascionalidade = nascionalidade;
+        this.nacionalidade = nacionalidade;
 
     }
-    public Pessoa(Integer id,String nome, LocalDate dataNascimento, String nascionalidade) {
+    public Pessoa(Integer id,String nome, LocalDate dataNascimento, String nacionalidade) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.nascionalidade = nascionalidade;
+        this.nacionalidade = nacionalidade;
 
     }
 
@@ -64,12 +64,12 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getNascionalidade() {
-        return nascionalidade;
+    public String getNacionalidade() {
+        return nacionalidade;
     }
 
-    public void setNascionalidade(String nascionalidade) {
-        this.nascionalidade = nascionalidade;
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
     }
 
     protected TipoPessoaEnum getTipoPessoaEnum() {
@@ -86,7 +86,7 @@ public abstract class Pessoa {
                 " id=" + id +"\n" +
                 " nome='" + nome +"\n" +
                 " dataNascimento=" + dataNascimento +"\n" +
-                " nascionalidade='" + nascionalidade +"\n" +
-               "\n"  +"\n"  +"\n"  ;
+                " nacionalidade='" + nacionalidade +"\n" +
+               "\n"  +"\n"  ;
     }
 }

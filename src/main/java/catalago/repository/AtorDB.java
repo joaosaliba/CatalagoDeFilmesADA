@@ -1,29 +1,31 @@
-package catalago.database;
+package catalago.repository;
 
-import catalago.entities.Filme;
+import catalago.database.DatabaseConnectionSingleton;
+import catalago.entities.Ator;
+import catalago.repository.intefaces.DBInterface;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmeDB implements DBInterface<Filme,Integer> {
+public class AtorDB implements DBInterface<Ator,Integer> {
 
     Connection db ;
 
-    public FilmeDB() throws SQLException {
+    public AtorDB() throws SQLException {
         this.db =  new DatabaseConnectionSingleton().getConnection();;
     }
 
     @Override
-    public void insert(Filme filme) throws SQLException {
-        String sql = "INSERT INTO filme (nome, data_lancamento, orcamento, descricao) VALUES (?, ?, ?, ?)";
+    public void insert(Ator ator) throws SQLException {
+        String sql = "INSERT INTO ator (nome,data_nascimento,nacionalidade,tipo_pessoa_enum) VALUES (?, ?, ?, ?)";
 
         PreparedStatement statement = db.prepareStatement(sql);
         try {
-            statement.setString(1, filme.getNome());
-            statement.setDate(2, Date.valueOf(filme.getDataLancamento()));
-            statement.setBigDecimal(3, filme.getOrcamento());
-            statement.setString(4, filme.getDescricao());
+            statement.setString(1, ator.getNome());
+            statement.setDate(2, Date.valueOf(ator.getDataNascimento()));
+            statement.setString(3, ator.getNacionalidade());
+            statement.setString(4, ator.getTipoPessoaEnum().name());
             statement.executeUpdate();
             db.commit();
         } catch (SQLException e) {
@@ -36,23 +38,23 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
 
 
     @Override
-    public Filme getByID(Integer filmeID) throws SQLException {
-        String sql = "SELECT * FROM filme WHERE id = ?";
+    public Ator getByID(Integer filmeID) throws SQLException {
+        String sql = "SELECT * FROM ator WHERE id = ?";
         PreparedStatement statement = db.prepareStatement(sql);
         try {
-            Filme filme = null;
+            Ator ator = null;
 
             statement.setInt(1, filmeID);
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                filme = new Filme(resultSet);
+                ator = new Ator(resultSet);
             }
 
-            return filme;
+            return ator;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar filme de id: "+filmeID, e);
+            throw new RuntimeException("Erro ao buscar ator de id: "+filmeID, e);
         } finally {
             db.close();
         }
@@ -60,7 +62,7 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
     }
     @Override
     public void removeById(Integer filmeID) throws SQLException {
-        String sql = "DELETE FROM filme WHERE id = ?";
+        String sql = "DELETE FROM ator WHERE id = ?";
         PreparedStatement statement = db.prepareStatement(sql);
         try {
 
@@ -71,7 +73,7 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
         } catch (SQLException e) {
             db.rollback();
             e.printStackTrace();
-            throw new RuntimeException("Erro ao remover filme de id: "+filmeID, e);
+            throw new RuntimeException("Erro ao remover ator de id: "+filmeID, e);
         } finally {
             db.close();
         }
@@ -79,46 +81,45 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
     }
 
     @Override
-    public List<Filme> getAll() throws SQLException {
-        String sql = "SELECT * FROM filme";
+    public List<Ator> getAll() throws SQLException {
+        String sql = "SELECT * FROM ator";
         PreparedStatement statement = db.prepareStatement(sql);
         try {
 
 
             ResultSet resultSet = statement.executeQuery();
-            List filmes = new ArrayList<>();
+            List atores = new ArrayList<>();
             while (resultSet.next()) {
-                Filme filme  = new Filme(resultSet);
-                filmes.add(filme);
+                Ator ator  = new Ator(resultSet);
+                atores.add(ator);
             }
 
-            return filmes;
+            return atores;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao listar filmes", e);
+            throw new RuntimeException("Erro ao listar atores", e);
         } finally {
             db.close();
         }
     }
 
     @Override
-    public List<Filme> getByName(String name) throws SQLException {
-        String sql = "SELECT * FROM filme WHERE upper(nome) LIKE ?";
+    public List<Ator> getByName(String name) throws SQLException {
+        String sql = "SELECT * FROM ator WHERE upper(nome) LIKE ?";
         PreparedStatement statement = db.prepareStatement(sql);
         try {
             statement.setString(1, "%" + name.toUpperCase() + "%");
-
             ResultSet resultSet = statement.executeQuery();
-            List<Filme> filmes = new ArrayList<>();
+            List<Ator> atores = new ArrayList<>();
             while (resultSet.next()) {
-                Filme filme = new Filme(resultSet);
-                filmes.add(filme);
+                Ator ator = new Ator(resultSet);
+                atores.add(ator);
             }
 
-            return filmes;
+            return atores;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao listar filmes", e);
+            throw new RuntimeException("Erro ao listar atores", e);
         } finally {
             db.close();
         }
