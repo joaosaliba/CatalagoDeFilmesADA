@@ -1,4 +1,4 @@
-package catalago.entities;
+package catalago.models;
 
 import catalago.abstracts.Pessoa;
 import catalago.enums.TipoPessoaEnum;

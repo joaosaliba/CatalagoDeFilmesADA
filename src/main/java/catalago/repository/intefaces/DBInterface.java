@@ -1,7 +1,5 @@
 package catalago.repository.intefaces;
 
-import catalago.entities.Filme;
-
 import java.sql.SQLException;
 import java.util.List;
 

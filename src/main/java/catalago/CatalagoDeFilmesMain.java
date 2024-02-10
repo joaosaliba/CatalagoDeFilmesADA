@@ -1,18 +1,8 @@
 package catalago;
 
-import catalago.abstracts.Pessoa;
-import catalago.entities.Ator;
-import catalago.entities.Filme;
 import catalago.repository.AtorDB;
-import catalago.repository.DiretorDB;
-import catalago.entities.Diretor;
-import catalago.enums.TipoPessoaEnum;
-import catalago.factory.PessoaFactory;
-import catalago.repository.FilmeDB;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class CatalagoDeFilmesMain {

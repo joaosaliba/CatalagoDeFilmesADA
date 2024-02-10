@@ -1,8 +1,8 @@
 package catalago.factory;
 
 import catalago.abstracts.Pessoa;
-import catalago.entities.Ator;
-import catalago.entities.Diretor;
+import catalago.models.Ator;
+import catalago.models.Diretor;
 import catalago.enums.TipoPessoaEnum;
 
 public class PessoaFactory {

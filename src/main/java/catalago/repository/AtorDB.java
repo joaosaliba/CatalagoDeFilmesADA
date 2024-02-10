@@ -1,8 +1,7 @@
 package catalago.repository;
 
 import catalago.database.DatabaseConnectionSingleton;
-import catalago.entities.Ator;
-import catalago.entities.Diretor;
+import catalago.models.Ator;
 import catalago.repository.intefaces.DBInterface;
 
 import java.sql.*;
@@ -32,9 +31,7 @@ public class AtorDB implements DBInterface<Ator,Integer> {
         } catch (SQLException e) {
             db.rollback();
             e.printStackTrace();
-        } finally {
-            db.close();
-        }
+        } 
     }
 
 
@@ -56,9 +53,7 @@ public class AtorDB implements DBInterface<Ator,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar ator de id: "+filmeID, e);
-        } finally {
-            db.close();
-        }
+        } 
 
     }
     @Override
@@ -75,9 +70,7 @@ public class AtorDB implements DBInterface<Ator,Integer> {
             db.rollback();
             e.printStackTrace();
             throw new RuntimeException("Erro ao remover ator de id: "+filmeID, e);
-        } finally {
-            db.close();
-        }
+        } 
 
     }
 
@@ -99,9 +92,7 @@ public class AtorDB implements DBInterface<Ator,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar atores", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
 
     @Override
@@ -121,9 +112,7 @@ public class AtorDB implements DBInterface<Ator,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar atores", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
     public List<Ator> getByFilmeId(Integer filmeId) throws SQLException {
         String sql = "  SELECT d.* FROM ator d" +
@@ -143,9 +132,7 @@ public class AtorDB implements DBInterface<Ator,Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar atores", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
 
 

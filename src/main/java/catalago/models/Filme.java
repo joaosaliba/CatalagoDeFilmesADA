@@ -1,4 +1,4 @@
-package catalago.entities;
+package catalago.models;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;

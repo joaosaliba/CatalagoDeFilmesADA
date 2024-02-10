@@ -1,7 +1,7 @@
 package catalago.repository;
 
 import catalago.database.DatabaseConnectionSingleton;
-import catalago.entities.Diretor;
+import catalago.models.Diretor;
 import catalago.repository.intefaces.DBInterface;
 
 import java.sql.*;
@@ -32,9 +32,7 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
         } catch (SQLException e) {
             db.rollback();
             e.printStackTrace();
-        } finally {
-            db.close();
-        }
+        } 
     }
 
 
@@ -56,9 +54,7 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar diretor de id: " + filmeID, e);
-        } finally {
-            db.close();
-        }
+        } 
 
     }
 
@@ -76,9 +72,7 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
             db.rollback();
             e.printStackTrace();
             throw new RuntimeException("Erro ao remover diretor de id: " + filmeID, e);
-        } finally {
-            db.close();
-        }
+        } 
 
     }
 
@@ -100,9 +94,7 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar diretores", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
 
     @Override
@@ -122,9 +114,7 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar diretores", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
 
     public List<Diretor> getByFilmeId(Integer filmeId) throws SQLException {
@@ -145,9 +135,7 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao listar diretores", e);
-        } finally {
-            db.close();
-        }
+        } 
     }
 
 }
