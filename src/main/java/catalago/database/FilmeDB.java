@@ -8,12 +8,16 @@ import java.util.List;
 
 public class FilmeDB implements DBInterface<Filme,Integer> {
 
+    Connection db ;
 
+    public FilmeDB() throws SQLException {
+        this.db =  new DatabaseConnectionSingleton().getConnection();;
+    }
 
     @Override
     public void insert(Filme filme) throws SQLException {
         String sql = "INSERT INTO filme (nome, data_lancamento, orcamento, descricao) VALUES (?, ?, ?, ?)";
-        Connection db = DatabaseConnection.getConnection();
+
         PreparedStatement statement = db.prepareStatement(sql);
         try {
             statement.setString(1, filme.getNome());
@@ -34,7 +38,6 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
     @Override
     public Filme getByID(Integer filmeID) throws SQLException {
         String sql = "SELECT * FROM filme WHERE id = ?";
-        Connection db = DatabaseConnection.getConnection();
         PreparedStatement statement = db.prepareStatement(sql);
         try {
             Filme filme = null;
@@ -58,7 +61,6 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
     @Override
     public void removeById(Integer filmeID) throws SQLException {
         String sql = "DELETE FROM filme WHERE id = ?";
-        Connection db = DatabaseConnection.getConnection();
         PreparedStatement statement = db.prepareStatement(sql);
         try {
 
@@ -79,7 +81,6 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
     @Override
     public List<Filme> getAll() throws SQLException {
         String sql = "SELECT * FROM filme";
-        Connection db = DatabaseConnection.getConnection();
         PreparedStatement statement = db.prepareStatement(sql);
         try {
 
@@ -103,7 +104,6 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
     @Override
     public List<Filme> getByName(String name) throws SQLException {
         String sql = "SELECT * FROM filme WHERE upper(nome) LIKE ?";
-        Connection db = DatabaseConnection.getConnection();
         PreparedStatement statement = db.prepareStatement(sql);
         try {
             statement.setString(1, "%" + name.toUpperCase() + "%");

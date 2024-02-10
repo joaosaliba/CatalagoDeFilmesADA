@@ -18,6 +18,10 @@ public class Diretor extends Pessoa {
         super(nome, dataNascimento, nascionalidade);
         this.setTipoPessoaEnum(TipoPessoaEnum.DIRETOR);
     }
+    public Diretor(Integer id,String nome, LocalDate dataNascimento, String nascionalidade) {
+        super(id,nome, dataNascimento, nascionalidade);
+        this.setTipoPessoaEnum(TipoPessoaEnum.DIRETOR);
+    }
 
     @Override
     public TipoPessoaEnum getTipoPessoaEnum() {

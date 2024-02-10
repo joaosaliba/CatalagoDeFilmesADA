@@ -33,15 +33,20 @@ public abstract class Pessoa {
         this.nascionalidade = nascionalidade;
 
     }
+    public Pessoa(Integer id,String nome, LocalDate dataNascimento, String nascionalidade) {
+        this.id = id;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.nascionalidade = nascionalidade;
+
+    }
 
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+
 
     public String getNome() {
         return nome;

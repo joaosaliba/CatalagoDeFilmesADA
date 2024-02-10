@@ -19,6 +19,11 @@ public class Ator extends Pessoa {
         this.setTipoPessoaEnum(TipoPessoaEnum.ATOR);
     }
 
+    public Ator(Integer id, String nome, LocalDate dataNascimento, String nascionalidade) {
+        super(id, nome, dataNascimento, nascionalidade);
+        this.setTipoPessoaEnum(TipoPessoaEnum.ATOR);
+    }
+
     @Override
     public TipoPessoaEnum getTipoPessoaEnum() {
         return TipoPessoaEnum.ATOR;

@@ -37,9 +37,9 @@ public class Filme {
         this.atores = new ArrayList<>();
     }
 
-    public Filme(String nome, LocalDate dataLancamento,
+    public Filme(Integer id, String nome, LocalDate dataLancamento,
                  BigDecimal orcamento, String descricao) {
-        this.id = getAndIncrementCounter();
+        this.id = id;
         this.nome = nome;
         this.dataLancamento = dataLancamento;
         this.orcamento = orcamento;
@@ -64,9 +64,6 @@ public class Filme {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

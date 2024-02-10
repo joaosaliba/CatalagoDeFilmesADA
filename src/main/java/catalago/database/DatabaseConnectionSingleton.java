@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class DatabaseConnection {
-    public static Connection conexao = null;
-    private final static String url = "jdbc:postgresql://localhost:5432/catalagoFilme?currentSchema=catalago";
-    private final static String user = "catalagoFilmeADA";
-    private final static String pass = "catalagoFilmeADA";
+public class DatabaseConnectionSingleton {
+    public  Connection conexao = null;
+    private final  String url = "jdbc:postgresql://localhost:5432/catalagoFilme?currentSchema=catalago";
+    private final  String user = "catalagoFilmeADA";
+    private final  String pass = "catalagoFilmeADA";
 
-    public static Connection getConnection() throws SQLException {
+    public  Connection getConnection() throws SQLException {
         if (Objects.isNull(conexao) || conexao.isClosed()) {
 
             try {
