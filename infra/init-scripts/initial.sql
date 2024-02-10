@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS catalago.filme
 
 CREATE OR REPLACE FUNCTION is_ator(pessoa_id INTEGER) RETURNS BOOLEAN AS $$
 BEGIN
-    RETURN (SELECT tipo_pessoa_enum FROM catalago.pessoa WHERE id = pessoa_id) = 'ATOR';
+    RETURN (SELECT tipo_pessoa_enum FROM catalago.ator WHERE id = pessoa_id) = 'ATOR';
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION is_diretor(pessoa_id INTEGER) RETURNS BOOLEAN AS $$
 BEGIN
-    RETURN (SELECT tipo_pessoa_enum FROM catalago.pessoa WHERE id = pessoa_id) = 'DIRETOR';
+    RETURN (SELECT tipo_pessoa_enum FROM catalago.diretor WHERE id = pessoa_id) = 'DIRETOR';
 END;
 $$ LANGUAGE plpgsql;
 
