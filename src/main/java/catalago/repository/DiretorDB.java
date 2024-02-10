@@ -8,12 +8,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiretorDB implements DBInterface<Diretor,Integer> {
+public class DiretorDB implements DBInterface<Diretor, Integer> {
 
-    Connection db ;
+    Connection db;
 
     public DiretorDB() throws SQLException {
-        this.db =  new DatabaseConnectionSingleton().getConnection();;
+        this.db = new DatabaseConnectionSingleton().getConnection();
+        ;
     }
 
     @Override
@@ -54,12 +55,13 @@ public class DiretorDB implements DBInterface<Diretor,Integer> {
             return diretor;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar diretor de id: "+filmeID, e);
+            throw new RuntimeException("Erro ao buscar diretor de id: " + filmeID, e);
         } finally {
             db.close();
         }
 
     }
+
     @Override
     public void removeById(Integer filmeID) throws SQLException {
         String sql = "DELETE FROM diretor WHERE id = ?";
@@ -73,7 +75,7 @@ public class DiretorDB implements DBInterface<Diretor,Integer> {
         } catch (SQLException e) {
             db.rollback();
             e.printStackTrace();
-            throw new RuntimeException("Erro ao remover diretor de id: "+filmeID, e);
+            throw new RuntimeException("Erro ao remover diretor de id: " + filmeID, e);
         } finally {
             db.close();
         }
@@ -90,7 +92,7 @@ public class DiretorDB implements DBInterface<Diretor,Integer> {
             ResultSet resultSet = statement.executeQuery();
             List diretores = new ArrayList<>();
             while (resultSet.next()) {
-                Diretor diretor  = new Diretor(resultSet);
+                Diretor diretor = new Diretor(resultSet);
                 diretores.add(diretor);
             }
 
@@ -125,6 +127,27 @@ public class DiretorDB implements DBInterface<Diretor,Integer> {
         }
     }
 
+    public List<Diretor> getByFilmeId(Integer filmeId) throws SQLException {
+        String sql = "  SELECT d.* FROM diretor d" +
+                " LEFT JOIN filme_diretor  fd ON d.id = fd.diretor_id" +
+                " where fd.filme_id = ?";
+        PreparedStatement statement = db.prepareStatement(sql);
+        try {
+            statement.setInt(1, filmeId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Diretor> diretores = new ArrayList<>();
+            while (resultSet.next()) {
+                Diretor diretor = new Diretor(resultSet);
+                diretores.add(diretor);
+            }
 
+            return diretores;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao listar diretores", e);
+        } finally {
+            db.close();
+        }
+    }
 
 }

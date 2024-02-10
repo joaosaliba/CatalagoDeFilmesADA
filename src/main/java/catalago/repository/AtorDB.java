@@ -2,6 +2,7 @@ package catalago.repository;
 
 import catalago.database.DatabaseConnectionSingleton;
 import catalago.entities.Ator;
+import catalago.entities.Diretor;
 import catalago.repository.intefaces.DBInterface;
 
 import java.sql.*;
@@ -124,7 +125,28 @@ public class AtorDB implements DBInterface<Ator,Integer> {
             db.close();
         }
     }
+    public List<Ator> getByFilmeId(Integer filmeId) throws SQLException {
+        String sql = "  SELECT d.* FROM ator d" +
+                " LEFT JOIN filme_ator  fd ON d.id = fd.ator_id" +
+                " where fd.filme_id = ?";
+        PreparedStatement statement = db.prepareStatement(sql);
+        try {
+            statement.setInt(1, filmeId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Ator> atores = new ArrayList<>();
+            while (resultSet.next()) {
+                Ator ator = new Ator(resultSet);
+                atores.add(ator);
+            }
 
+            return atores;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao listar atores", e);
+        } finally {
+            db.close();
+        }
+    }
 
 
 }

@@ -87,6 +87,6 @@ public abstract class Pessoa {
                 " nome='" + nome +"\n" +
                 " dataNascimento=" + dataNascimento +"\n" +
                 " nacionalidade='" + nacionalidade +"\n" +
-               "\n"  +"\n"  ;
+               "\n"   ;
     }
 }
