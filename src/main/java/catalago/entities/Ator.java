@@ -12,9 +12,6 @@ public class Ator extends Pessoa {
         this.setTipoPessoaEnum(TipoPessoaEnum.ATOR);
     }
 
-    public Ator(TipoPessoaEnum tipoPessoaEnum) {
-        super(tipoPessoaEnum);
-    }
 
     public Ator(String nome, LocalDate dataNascimento, String nacionalidade) {
         super(nome, dataNascimento, nacionalidade);

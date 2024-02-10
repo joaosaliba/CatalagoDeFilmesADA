@@ -9,8 +9,8 @@ public class PessoaFactory {
 
     public static Pessoa getInstance(TipoPessoaEnum tipoPessoaEnum) {
         return switch (tipoPessoaEnum) {
-            case ATOR -> new Ator(TipoPessoaEnum.ATOR);
-            case DIRETOR -> new Diretor(TipoPessoaEnum.DIRETOR);
+            case ATOR -> new Ator();
+            case DIRETOR -> new Diretor();
             default -> throw new IllegalArgumentException("Tipo Pessoa não encontrada");
         };
 

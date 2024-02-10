@@ -8,14 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Filme {
-    private static Integer counter = 1;
-
-
-
-    private static Integer getAndIncrementCounter() {
-        return counter++;
-    }
-
     private Integer id;
     private String nome;
     private LocalDate dataLancamento;
@@ -50,7 +42,6 @@ public class Filme {
     public Filme(String nome, LocalDate dataLancamento,
                  BigDecimal orcamento, String descricao,
                  List<Diretor> diretores, List<Ator> atores) {
-        this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataLancamento = dataLancamento;
         this.orcamento = orcamento;

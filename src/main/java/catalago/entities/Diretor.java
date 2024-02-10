@@ -12,9 +12,6 @@ public class Diretor extends Pessoa {
         this.setTipoPessoaEnum(TipoPessoaEnum.DIRETOR);
     }
 
-    public Diretor(TipoPessoaEnum tipoPessoaEnum) {
-        super(tipoPessoaEnum);
-    }
 
     public Diretor(String nome, LocalDate dataNascimento, String nacionalidade) {
         super(nome, dataNascimento, nacionalidade);

@@ -6,12 +6,6 @@ import catalago.enums.TipoPessoaEnum;
 import java.time.LocalDate;
 
 public abstract class Pessoa {
-    private static Integer counter = 1;
-
-    private static Integer getAndIncrementCounter() {
-        return counter++;
-    }
-
     private Integer id;
     private String nome;
     private LocalDate dataNascimento;
@@ -22,12 +16,8 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(TipoPessoaEnum tipoPessoaEnum) {
-        this.tipoPessoaEnum = tipoPessoaEnum;
-    }
 
     public Pessoa(String nome, LocalDate dataNascimento, String nacionalidade) {
-        this.id = getAndIncrementCounter();
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.nacionalidade = nacionalidade;
