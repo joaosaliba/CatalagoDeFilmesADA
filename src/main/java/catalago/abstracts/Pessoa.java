@@ -4,6 +4,7 @@ package catalago.abstracts;
 import catalago.enums.TipoPessoaEnum;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Pessoa {
     private Integer id;
@@ -49,6 +50,10 @@ public abstract class Pessoa {
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
+    public String getDataNascimentoFormatada() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return getDataNascimento().format(formatter);
+    }
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
@@ -68,6 +73,15 @@ public abstract class Pessoa {
 
     protected void setTipoPessoaEnum(TipoPessoaEnum tipoPessoaEnum) {
         this.tipoPessoaEnum = tipoPessoaEnum;
+    }
+
+    public void showInformations(){
+        System.out.println(this.getTipoPessoaEnum().name());
+        System.out.println("ID: " + this.getId());
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Data Nascimento: " + this.getDataNascimentoFormatada());
+        System.out.println("Nascionalidade: " + this.getNacionalidade());
+        System.out.print("\n");
     }
 
     @Override

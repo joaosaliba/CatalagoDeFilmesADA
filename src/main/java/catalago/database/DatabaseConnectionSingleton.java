@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class DatabaseConnectionSingleton {
-    public Connection conexao = null;
+    private Connection conexao = null;
     private final String url = "jdbc:postgresql://localhost:5432/catalagoFilme?currentSchema=catalago";
     private final String user = "catalagoFilmeADA";
     private final String pass = "catalagoFilmeADA";

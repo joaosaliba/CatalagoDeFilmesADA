@@ -1,9 +1,14 @@
 package catalago.models;
 
+import catalago.abstracts.Pessoa;
+import catalago.repository.AtorDB;
+import catalago.repository.DiretorDB;
+
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +27,12 @@ public class Filme {
         this.dataLancamento = resultSet.getDate("data_lancamento").toLocalDate();
         this.orcamento = resultSet.getBigDecimal("orcamento");
         this.descricao = resultSet.getString("descricao");
+        this.diretores = new DiretorDB().getByFilmeId(this.id);
+        this.atores = new AtorDB().getByFilmeId(this.id);
+
 
     }
+
     public Filme() {
         this.diretores = new ArrayList<>();
         this.atores = new ArrayList<>();
@@ -40,14 +49,12 @@ public class Filme {
     }
 
     public Filme(String nome, LocalDate dataLancamento,
-                 BigDecimal orcamento, String descricao,
-                 List<Diretor> diretores, List<Ator> atores) {
+                 BigDecimal orcamento, String descricao
+    ) {
         this.nome = nome;
         this.dataLancamento = dataLancamento;
         this.orcamento = orcamento;
         this.descricao = descricao;
-        this.diretores = diretores;
-        this.atores = atores;
 
     }
 
@@ -66,6 +73,11 @@ public class Filme {
 
     public LocalDate getDataLancamento() {
         return dataLancamento;
+    }
+
+    public String getDataLancamentoFormatada() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return getDataLancamento().format(formatter);
     }
 
     public void setDataLancamento(LocalDate dataLancamento) {
@@ -108,28 +120,45 @@ public class Filme {
         this.atores.add(ator);
         return this.atores;
     }
+
     public List<Ator> removeAtor(Ator ator) {
         this.atores.remove(ator);
         return this.atores;
     }
+
     public List<Diretor> addDiretor(Diretor diretor) {
         this.diretores.add(diretor);
         return this.diretores;
     }
+
     public List<Diretor> removeDiretor(Diretor diretor) {
         this.diretores.remove(diretor);
         return this.diretores;
     }
 
+    public void showInformations() {
+        System.out.println("ID: " + this.getId());
+        System.out.println("Nome: " + this.getNome());
+        System.out.println("Data Lançamento: " + this.getDataLancamentoFormatada());
+        System.out.println("Orçamento: R$" + this.getOrcamento().toString().replace(".", ","));
+        System.out.println("Descrição: " + this.getDescricao());
+        System.out.println("Diretores: ");
+        this.diretores.forEach(Pessoa::showInformations);
+        System.out.println("Atores: ");
+
+        this.atores.forEach(Pessoa::showInformations);
+        System.out.println("---------------------------\n");
+    }
+
     @Override
     public String toString() {
         return "Filme " +
-                "id=" + id +"\n" +
+                "id=" + id + "\n" +
                 "nome='" + nome + "\n" +
-                "Data Lancamento=" + dataLancamento +"\n" +
-                "orcamento=" + orcamento +"\n" +
-                "descricao='" + descricao +"\n" +
-                "diretores=" + diretores +"\n" +
-                "atores=" + atores+"\n" +"\n"  ;
+                "Data Lancamento=" + dataLancamento + "\n" +
+                "orcamento=" + orcamento + "\n" +
+                "descricao='" + descricao + "\n" +
+                "diretores=" + diretores + "\n" +
+                "atores=" + atores + "\n" + "\n";
     }
 }
