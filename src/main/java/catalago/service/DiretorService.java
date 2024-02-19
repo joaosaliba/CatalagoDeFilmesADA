@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class DiretorService {
     private DiretorDB repostiryDiretor;
 
-    public DiretorService() throws SQLException {
-        this.repostiryDiretor = new DiretorDB();
+    public DiretorService(DiretorDB repostiryDiretor) {
+        this.repostiryDiretor = repostiryDiretor;
     }
 
     public void cadastrarDiretor(Scanner scanner) throws SQLException {

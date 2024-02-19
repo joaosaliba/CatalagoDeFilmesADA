@@ -12,8 +12,8 @@ import java.util.Scanner;
 public class FilmeService {
     private FilmeDB repostiryFilme;
 
-    public FilmeService() throws SQLException {
-        this.repostiryFilme = new FilmeDB();
+    public FilmeService(FilmeDB repostiryFilme) {
+        this.repostiryFilme = repostiryFilme;
     }
 
     public void cadastrarFilme(Scanner scanner) throws SQLException {

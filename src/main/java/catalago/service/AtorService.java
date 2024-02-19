@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class AtorService {
     private AtorDB repostiryAtor;
 
-    public AtorService() throws SQLException {
-        this.repostiryAtor = new AtorDB();
+    public AtorService(AtorDB repostiryAtor) {
+        this.repostiryAtor = repostiryAtor;
     }
 
     public void cadastrarAtor(Scanner scanner) throws SQLException {

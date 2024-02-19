@@ -12,9 +12,8 @@ public class DiretorDB implements DBInterface<Diretor, Integer> {
 
     Connection db;
 
-    public DiretorDB() throws SQLException {
-        this.db = new DatabaseConnectionSingleton().getConnection();
-        ;
+    public DiretorDB(Connection db) {
+        this.db = db;
     }
 
     @Override

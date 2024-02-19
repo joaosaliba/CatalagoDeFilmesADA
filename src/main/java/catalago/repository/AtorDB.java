@@ -12,8 +12,8 @@ public class AtorDB implements DBInterface<Ator,Integer> {
 
     Connection db ;
 
-    public AtorDB() throws SQLException {
-        this.db =  new DatabaseConnectionSingleton().getConnection();;
+    public AtorDB(Connection db) {
+        this.db = db;
     }
 
     @Override

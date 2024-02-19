@@ -1,5 +1,7 @@
 package catalago.service;
 
+import catalago.repository.AtorDB;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -9,10 +11,10 @@ public class MenuService {
     private final AtorService atorService;
     private final DiretorService diretorService;
 
-    public MenuService() throws SQLException {
-        this.filmeService = new FilmeService();
-        this.atorService = new AtorService();
-        this.diretorService = new DiretorService();
+    public MenuService(FilmeService filmeService, AtorService atorService, DiretorService diretorService) {
+        this.filmeService = filmeService;
+        this.atorService = atorService;
+        this.diretorService = diretorService;
     }
 
     public void menuPrincipal() throws SQLException {
@@ -46,7 +48,6 @@ public class MenuService {
 
     private void menuFilmes(Scanner scanner) throws SQLException {
         int opcaoFilmes;
-        FilmeService filmeService = new FilmeService();
 
         do {
             System.out.println("===== Menu de Filmes =====");
@@ -77,8 +78,6 @@ public class MenuService {
 
     private void menuAtores(Scanner scanner) throws SQLException {
         int opcaoAtores;
-        AtorService atorService = new AtorService();
-
         do {
             System.out.println("===== Menu de Atores =====");
             System.out.println("1. Inserir Ator");
@@ -103,7 +102,6 @@ public class MenuService {
     }
     private void menuDiretores(Scanner scanner) throws SQLException {
         int opcaoDiretores;
-        DiretorService diretorService = new DiretorService();
 
         do {
             System.out.println("===== Menu de Diretores =====");

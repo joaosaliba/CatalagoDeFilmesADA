@@ -12,8 +12,8 @@ public class FilmeDB implements DBInterface<Filme,Integer> {
 
     Connection db ;
 
-    public FilmeDB() throws SQLException {
-        this.db =  new DatabaseConnectionSingleton().getConnection();;
+    public FilmeDB(Connection db) {
+        this.db = db;
     }
 
     @Override
