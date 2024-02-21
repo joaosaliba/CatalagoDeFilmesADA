@@ -1,9 +1,6 @@
 package catalago.models;
 
 import catalago.abstracts.Pessoa;
-import catalago.database.DatabaseConnectionSingleton;
-import catalago.repository.AtorDB;
-import catalago.repository.DiretorDB;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -28,8 +25,6 @@ public class Filme {
         this.dataLancamento = resultSet.getDate("data_lancamento").toLocalDate();
         this.orcamento = resultSet.getBigDecimal("orcamento");
         this.descricao = resultSet.getString("descricao");
-        this.diretores = new DiretorDB(new DatabaseConnectionSingleton().getConnection()).getByFilmeId(this.id);
-        this.atores = new AtorDB(new DatabaseConnectionSingleton().getConnection()).getByFilmeId(this.id);
 
 
     }

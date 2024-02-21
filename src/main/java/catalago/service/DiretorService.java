@@ -15,70 +15,88 @@ public class DiretorService {
         this.repostiryDiretor = repostiryDiretor;
     }
 
-    public void cadastrarDiretor(Scanner scanner) throws SQLException {
-        System.out.print("Digite o nome do Diretor: ");
-        String nome = scanner.nextLine();
+    public void cadastrarDiretor(Scanner scanner) {
+        try {
 
-        System.out.print("Digite a data de nascimento (dd/mm/aaa)  do Diretor : ");
-        String dataNascimentoStr = scanner.nextLine();
-        String[] partesData = dataNascimentoStr.split("/");
+            System.out.print("Digite o nome do Diretor: ");
+            String nome = scanner.nextLine();
 
-        int dia = Integer.parseInt(partesData[0]);
+            System.out.print("Digite a data de nascimento (dd/mm/aaa)  do Diretor : ");
+            String dataNascimentoStr = scanner.nextLine();
+            String[] partesData = dataNascimentoStr.split("/");
 
-        int mes = Integer.parseInt(partesData[1]);
-        int ano = Integer.parseInt(partesData[2]);
+            int dia = Integer.parseInt(partesData[0]);
 
-        LocalDate dataNascimento = LocalDate.of(ano, mes, dia);
+            int mes = Integer.parseInt(partesData[1]);
+            int ano = Integer.parseInt(partesData[2]);
 
-
-        System.out.print("Digite a nacionalidade do Diretor : ");
-        String nacionalidade = scanner.nextLine();
-
-        Diretor diretor = new Diretor(nome, dataNascimento, nacionalidade);
-
-        this.repostiryDiretor.insert(diretor);
-
-    }
+            LocalDate dataNascimento = LocalDate.of(ano, mes, dia);
 
 
-    public void listarDiretores() throws SQLException {
+            System.out.print("Digite a nacionalidade do Diretor : ");
+            String nacionalidade = scanner.nextLine();
 
+            Diretor diretor = new Diretor(nome, dataNascimento, nacionalidade);
 
-        List<Diretor> filmes = this.repostiryDiretor.getAll();
-        System.out.println("====================================");
-        System.out.println("Diretores cadastrados");
-        for (Diretor diretor : filmes) {
-            diretor.showInformations();
+            this.repostiryDiretor.insert(diretor);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("====================================");
 
     }
 
 
-    public void buscarDiretoresPorNome(Scanner scanner) throws SQLException {
+    public void listarDiretores() {
+        try {
 
-        System.out.print("Digite o nome do Diretor a procurar  : ");
-        String nome = scanner.nextLine().trim();
 
-        List<Diretor> filmes = this.repostiryDiretor.getByName(nome);
-        System.out.println("====================================");
-        System.out.println("Diretores cadastrados");
-        for (Diretor diretor : filmes) {
-            diretor.showInformations();
+            List<Diretor> filmes = this.repostiryDiretor.getAll();
+            System.out.println("====================================");
+            System.out.println("Diretores cadastrados");
+            for (Diretor diretor : filmes) {
+                diretor.showInformations();
+            }
+            System.out.println("====================================");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("====================================");
 
     }
-    public void buscarDiretorPorId(Scanner scanner) throws SQLException {
 
-        System.out.print("Digite o Id do Diretor a procurar  : ");
-        Integer ID = Integer.parseInt(scanner.nextLine().trim());
 
-        Diretor diretor = this.repostiryDiretor.getByID(ID);
-        System.out.println("====================================");
-        System.out.println("Diretors encontrado");
-        diretor.showInformations();
-        System.out.println("====================================");
+    public void buscarDiretoresPorNome(Scanner scanner) {
+        try {
+
+            System.out.print("Digite o nome do Diretor a procurar  : ");
+            String nome = scanner.nextLine().trim();
+
+            List<Diretor> filmes = this.repostiryDiretor.getByName(nome);
+            System.out.println("====================================");
+            System.out.println("Diretores cadastrados");
+            for (Diretor diretor : filmes) {
+                diretor.showInformations();
+            }
+            System.out.println("====================================");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void buscarDiretorPorId(Scanner scanner) {
+        try {
+
+            System.out.print("Digite o Id do Diretor a procurar  : ");
+            Integer ID = Integer.parseInt(scanner.nextLine().trim());
+
+            Diretor diretor = this.repostiryDiretor.getByID(ID);
+            System.out.println("====================================");
+            System.out.println("Diretors encontrado");
+            diretor.showInformations();
+            System.out.println("====================================");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

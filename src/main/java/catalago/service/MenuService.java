@@ -17,7 +17,7 @@ public class MenuService {
         this.diretorService = diretorService;
     }
 
-    public void menuPrincipal() throws SQLException {
+    public void menuPrincipal() {
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
@@ -46,7 +46,7 @@ public class MenuService {
         } while (opcao != 0);
     }
 
-    private void menuFilmes(Scanner scanner) throws SQLException {
+    private void menuFilmes(Scanner scanner) {
         int opcaoFilmes;
 
         do {
@@ -76,7 +76,7 @@ public class MenuService {
         } while (opcaoFilmes != 0);
     }
 
-    private void menuAtores(Scanner scanner) throws SQLException {
+    private void menuAtores(Scanner scanner) {
         int opcaoAtores;
         do {
             System.out.println("===== Menu de Atores =====");
@@ -100,7 +100,7 @@ public class MenuService {
             }
         } while (opcaoAtores != 0);
     }
-    private void menuDiretores(Scanner scanner) throws SQLException {
+    private void menuDiretores(Scanner scanner) {
         int opcaoDiretores;
 
         do {
