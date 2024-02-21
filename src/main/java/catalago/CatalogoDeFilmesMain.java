@@ -13,7 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class CatalogoDeFilmesMain {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args)  {
         Connection connection = new DatabaseConnectionSingleton().getConnection();
         MenuService menu = new MenuService(new FilmeService(new FilmeDB(connection)),
                                            new AtorService(new AtorDB(connection)),

@@ -11,7 +11,7 @@ public class DatabaseConnectionSingleton {
     private final String user = "catalagoFilmeADA";
     private final String pass = "catalagoFilmeADA";
 
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection()  {
 
         try {
             Class.forName("org.postgresql.Driver");
