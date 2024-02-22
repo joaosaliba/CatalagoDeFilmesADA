@@ -5,6 +5,7 @@ import catalago.models.Filme;
 import catalago.repository.AtorDB;
 import catalago.repository.DiretorDB;
 import catalago.repository.FilmeDB;
+import catalago.utils.ScannerSingleton;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -19,7 +20,9 @@ public class FilmeService {
         this.repostiryFilme = repostiryFilme;
     }
 
-    public void cadastrarFilme(Scanner scanner) {
+    public void cadastrarFilme() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
             System.out.print("Digite o nome do Filme : ");
             String nome = scanner.nextLine();
@@ -73,7 +76,9 @@ public class FilmeService {
     }
 
 
-    public void buscarFilmesPorNome(Scanner scanner) {
+    public void buscarFilmesPorNome() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
 
         try {
 
@@ -97,7 +102,9 @@ public class FilmeService {
 
     }
 
-    public void buscarFilmePorId(Scanner scanner) {
+    public void buscarFilmePorId() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o Id do Filme a procurar  : ");
@@ -116,7 +123,9 @@ public class FilmeService {
         }
     }
 
-    public void associarFilmeAtores(Scanner scanner) {
+    public void associarFilmeAtores() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
 
@@ -131,7 +140,9 @@ public class FilmeService {
         }
     }
 
-    public void associarFilmeDiretores(Scanner scanner) {
+    public void associarFilmeDiretores() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o Id do Filme a vincular  : ");

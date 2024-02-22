@@ -2,6 +2,7 @@ package catalago.service;
 
 import catalago.models.Diretor;
 import catalago.repository.DiretorDB;
+import catalago.utils.ScannerSingleton;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ public class DiretorService {
         this.repostiryDiretor = repostiryDiretor;
     }
 
-    public void cadastrarDiretor(Scanner scanner) {
+    public void cadastrarDiretor() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o nome do Diretor: ");
@@ -64,7 +67,9 @@ public class DiretorService {
     }
 
 
-    public void buscarDiretoresPorNome(Scanner scanner) {
+    public void buscarDiretoresPorNome() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o nome do Diretor a procurar  : ");
@@ -83,7 +88,9 @@ public class DiretorService {
 
     }
 
-    public void buscarDiretorPorId(Scanner scanner) {
+    public void buscarDiretorPorId() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o Id do Diretor a procurar  : ");

@@ -2,6 +2,7 @@ package catalago.service;
 
 import catalago.models.Ator;
 import catalago.repository.AtorDB;
+import catalago.utils.ScannerSingleton;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ public class AtorService {
         this.repostiryAtor = repostiryAtor;
     }
 
-    public void cadastrarAtor(Scanner scanner) {
+    public void cadastrarAtor() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o nome do Ator: ");
@@ -63,7 +66,9 @@ public class AtorService {
     }
 
 
-    public void buscarAtoresPorNome(Scanner scanner) {
+    public void buscarAtoresPorNome() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o nome do Ator a procurar  : ");
@@ -82,7 +87,9 @@ public class AtorService {
 
     }
 
-    public void buscarAtorPorId(Scanner scanner) {
+    public void buscarAtorPorId() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         try {
 
             System.out.print("Digite o Id do Ator a procurar  : ");

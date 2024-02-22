@@ -1,6 +1,7 @@
 package catalago.service;
 
 import catalago.repository.AtorDB;
+import catalago.utils.ScannerSingleton;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class MenuService {
     }
 
     public void menuPrincipal() {
-        Scanner scanner = new Scanner(System.in);
+       Scanner scanner = ScannerSingleton.instance().getScanner();
         int opcao;
 
         do {
@@ -33,9 +34,9 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcao) {
-                case 1->this.menuFilmes(scanner);
-                case 2->this.menuAtores(scanner);
-                case 3->this.menuDiretores(scanner);
+                case 1->this.menuFilmes();
+                case 2->this.menuAtores();
+                case 3->this.menuDiretores();
                 case 0-> {
                     System.out.println("Saindo do programa. Até logo!");
                     scanner.close();
@@ -46,7 +47,9 @@ public class MenuService {
         } while (opcao != 0);
     }
 
-    private void menuFilmes(Scanner scanner) {
+    private void menuFilmes() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         int opcaoFilmes;
 
         do {
@@ -64,19 +67,21 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcaoFilmes) {
-                case 1->filmeService.cadastrarFilme(scanner);
-                case 2->filmeService.associarFilmeAtores(scanner);
-                case 3->filmeService.associarFilmeDiretores(scanner);
-                case 4->filmeService.buscarFilmesPorNome(scanner);
+                case 1->filmeService.cadastrarFilme();
+                case 2->filmeService.associarFilmeAtores();
+                case 3->filmeService.associarFilmeDiretores();
+                case 4->filmeService.buscarFilmesPorNome();
                 case 5->filmeService.listarFilmes();
-                case 6->filmeService.buscarFilmePorId(scanner);
+                case 6->filmeService.buscarFilmePorId();
                 case 0->System.out.println("Voltando ao Menu Principal.");
                 default->System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcaoFilmes != 0);
     }
 
-    private void menuAtores(Scanner scanner) {
+    private void menuAtores() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         int opcaoAtores;
         do {
             System.out.println("===== Menu de Atores =====");
@@ -91,16 +96,18 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcaoAtores) {
-                case 1->atorService.cadastrarAtor(scanner);
+                case 1->atorService.cadastrarAtor();
                 case 2->atorService.listarAtores();
-                case 3->atorService.buscarAtoresPorNome(scanner);
-                case 4->atorService.buscarAtorPorId(scanner);
+                case 3->atorService.buscarAtoresPorNome();
+                case 4->atorService.buscarAtorPorId();
                 case 0->System.out.println("Voltando ao Menu Principal.");
                 default->System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcaoAtores != 0);
     }
-    private void menuDiretores(Scanner scanner) {
+    private void menuDiretores() {
+       Scanner scanner = ScannerSingleton.instance().getScanner();
+
         int opcaoDiretores;
 
         do {
@@ -116,10 +123,10 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcaoDiretores) {
-                case 1->diretorService.cadastrarDiretor(scanner);
+                case 1->diretorService.cadastrarDiretor();
                 case 2->diretorService.listarDiretores();
-                case 3->diretorService.buscarDiretoresPorNome(scanner);
-                case 4->diretorService.buscarDiretorPorId(scanner);
+                case 3->diretorService.buscarDiretoresPorNome();
+                case 4->diretorService.buscarDiretorPorId();
                 case 0->System.out.println("Voltando ao Menu Principal.");
                 default->System.out.println("Opção inválida. Tente novamente.");
             }
