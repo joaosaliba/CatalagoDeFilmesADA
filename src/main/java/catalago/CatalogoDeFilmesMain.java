@@ -7,17 +7,19 @@ import catalago.repository.FilmeDB;
 import catalago.service.AtorService;
 import catalago.service.DiretorService;
 import catalago.service.FilmeService;
-import catalago.service.MenuService;
+import view.AtorView;
+import view.DiretorView;
+import view.FilmeView;
+import view.MenuView;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class CatalogoDeFilmesMain {
     public static void main(String[] args)  {
         Connection connection = new DatabaseConnectionSingleton().getConnection();
-        MenuService menu = new MenuService(new FilmeService(new FilmeDB(connection)),
-                                           new AtorService(new AtorDB(connection)),
-                                           new DiretorService(new DiretorDB(connection)));
+        MenuView menu = new MenuView(new FilmeView(new FilmeService(new FilmeDB(connection))),
+                                           new AtorView(new AtorService(new AtorDB(connection))),
+                                           new DiretorView(new DiretorService( new DiretorDB(connection))));
         menu.menuPrincipal();
     }
 

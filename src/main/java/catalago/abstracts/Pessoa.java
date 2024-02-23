@@ -2,6 +2,7 @@ package catalago.abstracts;
 
 
 import catalago.enums.TipoPessoaEnum;
+import catalago.factory.PessoaFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -93,4 +94,48 @@ public abstract class Pessoa {
                 " nacionalidade='" + nacionalidade +"\n" +
                "\n"   ;
     }
+    public static class PessoaBuilder {
+        private Integer id;
+        private String nome;
+        private LocalDate dataNascimento;
+        private String nacionalidade;
+        private TipoPessoaEnum tipoPessoaEnum;
+
+        public static PessoaBuilder builder() {
+            return new PessoaBuilder();
+        }
+
+
+        public PessoaBuilder nome(String nome) {
+            this.nome = nome;
+            return this;
+        }
+
+        public PessoaBuilder dataNascimento(LocalDate dataNascimento) {
+            this.dataNascimento = dataNascimento;
+            return this;
+        }
+
+        public PessoaBuilder nacionalidade(String nacionalidade) {
+            this.nacionalidade = nacionalidade;
+            return this;
+        }
+
+        public PessoaBuilder tipoPessoa(TipoPessoaEnum tipoPessoaEnum) {
+            this.tipoPessoaEnum = tipoPessoaEnum;
+            return this;
+        }
+
+        public Pessoa build() {
+            Pessoa pessoa =  PessoaFactory.getInstance(tipoPessoaEnum);
+
+
+            pessoa.setNome(nome);
+            pessoa.setDataNascimento(dataNascimento);
+            pessoa.setNacionalidade(nacionalidade);
+
+            return pessoa;
+        }
+    }
+
 }

@@ -16,30 +16,12 @@ public class DiretorService {
         this.repostiryDiretor = repostiryDiretor;
     }
 
-    public void cadastrarDiretor() {
+    public void cadastrarDiretor(Diretor diretor) {
        Scanner scanner = ScannerSingleton.instance().getScanner();
 
         try {
 
-            System.out.print("Digite o nome do Diretor: ");
-            String nome = scanner.nextLine();
 
-            System.out.print("Digite a data de nascimento (dd/mm/aaa)  do Diretor : ");
-            String dataNascimentoStr = scanner.nextLine();
-            String[] partesData = dataNascimentoStr.split("/");
-
-            int dia = Integer.parseInt(partesData[0]);
-
-            int mes = Integer.parseInt(partesData[1]);
-            int ano = Integer.parseInt(partesData[2]);
-
-            LocalDate dataNascimento = LocalDate.of(ano, mes, dia);
-
-
-            System.out.print("Digite a nacionalidade do Diretor : ");
-            String nacionalidade = scanner.nextLine();
-
-            Diretor diretor = new Diretor(nome, dataNascimento, nacionalidade);
 
             this.repostiryDiretor.insert(diretor);
         } catch (SQLException e) {
@@ -49,17 +31,12 @@ public class DiretorService {
     }
 
 
-    public void listarDiretores() {
+    public List<Diretor> listarDiretores() {
         try {
 
 
-            List<Diretor> filmes = this.repostiryDiretor.getAll();
-            System.out.println("====================================");
-            System.out.println("Diretores cadastrados");
-            for (Diretor diretor : filmes) {
-                diretor.showInformations();
-            }
-            System.out.println("====================================");
+           return this.repostiryDiretor.getAll();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -67,40 +44,30 @@ public class DiretorService {
     }
 
 
-    public void buscarDiretoresPorNome() {
+    public List<Diretor> buscarDiretoresPorNome(String nome) {
        Scanner scanner = ScannerSingleton.instance().getScanner();
 
         try {
 
-            System.out.print("Digite o nome do Diretor a procurar  : ");
-            String nome = scanner.nextLine().trim();
 
-            List<Diretor> filmes = this.repostiryDiretor.getByName(nome);
-            System.out.println("====================================");
-            System.out.println("Diretores cadastrados");
-            for (Diretor diretor : filmes) {
-                diretor.showInformations();
-            }
-            System.out.println("====================================");
+
+            return this.repostiryDiretor.getByName(nome);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public void buscarDiretorPorId() {
+    public Diretor buscarDiretorPorId(Integer ID) {
        Scanner scanner = ScannerSingleton.instance().getScanner();
 
         try {
 
-            System.out.print("Digite o Id do Diretor a procurar  : ");
-            Integer ID = Integer.parseInt(scanner.nextLine().trim());
 
-            Diretor diretor = this.repostiryDiretor.getByID(ID);
-            System.out.println("====================================");
-            System.out.println("Diretors encontrado");
-            diretor.showInformations();
-            System.out.println("====================================");
+
+            return this.repostiryDiretor.getByID(ID);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

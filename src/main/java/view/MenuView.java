@@ -1,21 +1,20 @@
-package catalago.service;
+package view;
 
-import catalago.repository.AtorDB;
+import catalago.enums.TipoPessoaEnum;
 import catalago.utils.ScannerSingleton;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
-public class MenuService {
+public class MenuView {
 
-    private final FilmeService filmeService;
-    private final AtorService atorService;
-    private final DiretorService diretorService;
+    private final FilmeView filmeView;
+    private final AtorView atorService;
+    private final DiretorView diretorService;
 
-    public MenuService(FilmeService filmeService, AtorService atorService, DiretorService diretorService) {
-        this.filmeService = filmeService;
-        this.atorService = atorService;
-        this.diretorService = diretorService;
+    public MenuView(FilmeView filmeView, AtorView atorView, DiretorView diretorView) {
+        this.filmeView = filmeView;
+        this.atorService = atorView;
+        this.diretorService = diretorView;
     }
 
     public void menuPrincipal() {
@@ -67,12 +66,12 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcaoFilmes) {
-                case 1->filmeService.cadastrarFilme();
-                case 2->filmeService.associarFilmeAtores();
-                case 3->filmeService.associarFilmeDiretores();
-                case 4->filmeService.buscarFilmesPorNome();
-                case 5->filmeService.listarFilmes();
-                case 6->filmeService.buscarFilmePorId();
+                case 1-> filmeView.cadastrarFilme();
+                case 2-> filmeView.associarFilmeAtores();
+                case 3-> filmeView.associarFilmeDiretores();
+                case 4-> filmeView.buscarFilmesPorNome();
+                case 5-> filmeView.listarFilmes();
+                case 6-> filmeView.buscarFilmePorId();
                 case 0->System.out.println("Voltando ao Menu Principal.");
                 default->System.out.println("Opção inválida. Tente novamente.");
             }
@@ -96,7 +95,7 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcaoAtores) {
-                case 1->atorService.cadastrarAtor();
+                case 1->atorService.cadastrarAtor(TipoPessoaEnum.ATOR);
                 case 2->atorService.listarAtores();
                 case 3->atorService.buscarAtoresPorNome();
                 case 4->atorService.buscarAtorPorId();
@@ -123,7 +122,7 @@ public class MenuService {
             scanner.nextLine(); // Consumir a quebra de linha após o número
 
             switch (opcaoDiretores) {
-                case 1->diretorService.cadastrarDiretor();
+                case 1->diretorService.cadastrarDiretor(TipoPessoaEnum.DIRETOR);
                 case 2->diretorService.listarDiretores();
                 case 3->diretorService.buscarDiretoresPorNome();
                 case 4->diretorService.buscarDiretorPorId();
