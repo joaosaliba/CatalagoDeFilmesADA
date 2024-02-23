@@ -132,19 +132,7 @@ public class Filme {
         return this.diretores;
     }
 
-    public void showInformations() {
-        System.out.println("ID: " + this.getId());
-        System.out.println("Nome: " + this.getNome());
-        System.out.println("Data Lançamento: " + this.getDataLancamentoFormatada());
-        System.out.println("Orçamento: R$" + this.getOrcamento().toString().replace(".", ","));
-        System.out.println("Descrição: " + this.getDescricao());
-        System.out.println("Diretores: ");
-        this.diretores.forEach(Pessoa::showInformations);
-        System.out.println("Atores: ");
 
-        this.atores.forEach(Pessoa::showInformations);
-        System.out.println("---------------------------\n");
-    }
 
     @Override
     public String toString() {

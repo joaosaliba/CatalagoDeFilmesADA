@@ -13,9 +13,13 @@ import java.util.Scanner;
 public class AtorView {
     private AtorService service;
 
+    public AtorView() {
+    }
+
     public AtorView(AtorService service) {
         this.service = service;
     }
+
 
         public void cadastrarAtor(TipoPessoaEnum tipoPessoaEnum) {
         Scanner scanner = ScannerSingleton.instance().getScanner();
@@ -53,7 +57,7 @@ public class AtorView {
         System.out.println("====================================");
         System.out.println("Atores cadastrados");
         for (Pessoa ator : atores) {
-            ator.showInformations();
+            this.showInformations(ator);
         }
         System.out.println("====================================");
     }
@@ -68,7 +72,7 @@ public class AtorView {
         System.out.println("====================================");
         System.out.println("Atores encontrados");
         for (Ator ator : atores) {
-            ator.showInformations();
+            this.showInformations(ator);
         }
         System.out.println("====================================");
     }
@@ -81,7 +85,15 @@ public class AtorView {
         Pessoa ator = service.buscarAtorPorId(ID);
         System.out.println("====================================");
         System.out.println("Ators encontrado");
-        ator.showInformations();
+        this.showInformations(ator);
         System.out.println("====================================");
+    }
+
+    public  void showInformations(Pessoa pessoa){
+        System.out.println("ID: " + pessoa.getId());
+        System.out.println("Nome: " + pessoa.getNome());
+        System.out.println("Data Nascimento: " + pessoa.getDataNascimentoFormatada());
+        System.out.println("Nascionalidade: " + pessoa.getNacionalidade());
+        System.out.print("\n");
     }
 }

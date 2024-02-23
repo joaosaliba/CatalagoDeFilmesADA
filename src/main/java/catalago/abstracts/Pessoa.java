@@ -76,14 +76,7 @@ public abstract class Pessoa {
         this.tipoPessoaEnum = tipoPessoaEnum;
     }
 
-    public void showInformations(){
-        System.out.println(this.getTipoPessoaEnum().name());
-        System.out.println("ID: " + this.getId());
-        System.out.println("Nome: " + this.getNome());
-        System.out.println("Data Nascimento: " + this.getDataNascimentoFormatada());
-        System.out.println("Nascionalidade: " + this.getNacionalidade());
-        System.out.print("\n");
-    }
+
 
     @Override
     public String toString() {
@@ -95,16 +88,19 @@ public abstract class Pessoa {
                "\n"   ;
     }
     public static class PessoaBuilder {
-        private Integer id;
         private String nome;
         private LocalDate dataNascimento;
         private String nacionalidade;
         private TipoPessoaEnum tipoPessoaEnum;
+        public Pessoa build() {
+            Pessoa pessoa =  PessoaFactory.getInstance(tipoPessoaEnum);
 
-        public static PessoaBuilder builder() {
-            return new PessoaBuilder();
+            pessoa.setNome(nome);
+            pessoa.setDataNascimento(dataNascimento);
+            pessoa.setNacionalidade(nacionalidade);
+
+            return pessoa;
         }
-
 
         public PessoaBuilder nome(String nome) {
             this.nome = nome;
@@ -126,16 +122,7 @@ public abstract class Pessoa {
             return this;
         }
 
-        public Pessoa build() {
-            Pessoa pessoa =  PessoaFactory.getInstance(tipoPessoaEnum);
 
-
-            pessoa.setNome(nome);
-            pessoa.setDataNascimento(dataNascimento);
-            pessoa.setNacionalidade(nacionalidade);
-
-            return pessoa;
-        }
     }
 
 }

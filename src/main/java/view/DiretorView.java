@@ -13,6 +13,9 @@ import java.util.Scanner;
 public class DiretorView {
     private DiretorService service;
 
+    public DiretorView() {
+    }
+
     public DiretorView(DiretorService service) {
         this.service = service;
     }
@@ -53,7 +56,7 @@ public class DiretorView {
         System.out.println("====================================");
         System.out.println("Diretores cadastrados");
         for (Pessoa diretor : diretores) {
-            diretor.showInformations();
+            this.showInformations(diretor);
         }
         System.out.println("====================================");
     }
@@ -68,7 +71,7 @@ public class DiretorView {
         System.out.println("====================================");
         System.out.println("Diretores encontrados");
         for (Diretor diretor : diretores) {
-            diretor.showInformations();
+            this.showInformations(diretor);
         }
         System.out.println("====================================");
     }
@@ -81,7 +84,14 @@ public class DiretorView {
         Pessoa diretor = service.buscarDiretorPorId(ID);
         System.out.println("====================================");
         System.out.println("Diretors encontrado");
-        diretor.showInformations();
+        this.showInformations(diretor);
         System.out.println("====================================");
+    }
+    public  void showInformations(Pessoa pessoa){
+        System.out.println("ID: " + pessoa.getId());
+        System.out.println("Nome: " + pessoa.getNome());
+        System.out.println("Data Nascimento: " + pessoa.getDataNascimentoFormatada());
+        System.out.println("Nascionalidade: " + pessoa.getNacionalidade());
+        System.out.print("\n");
     }
 }

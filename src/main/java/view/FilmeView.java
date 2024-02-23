@@ -1,5 +1,6 @@
 package view;
 
+import catalago.abstracts.Pessoa;
 import catalago.database.DatabaseConnectionSingleton;
 import catalago.models.Filme;
 import catalago.repository.AtorDB;
@@ -64,7 +65,7 @@ public class FilmeView {
             System.out.println("====================================");
             System.out.println("Filmes cadastrados");
             for (Filme filme : filmes) {
-                filme.showInformations();
+                this.showInformations(filme);
             }
             System.out.println("====================================");
         } catch (RuntimeException e) {
@@ -90,7 +91,7 @@ public class FilmeView {
             System.out.println("====================================");
             System.out.println("Filmes encontrados");
             for (Filme filme : filmes) {
-                filme.showInformations();
+                this.showInformations(filme);
             }
             System.out.println("====================================");
         } catch (RuntimeException e) {
@@ -111,7 +112,8 @@ public class FilmeView {
 
             System.out.println("====================================");
             System.out.println("Filmes encontrado");
-            filme.showInformations();
+            this.showInformations(filme);
+
             System.out.println("====================================");
 
         } catch (RuntimeException e) {
@@ -150,5 +152,22 @@ public class FilmeView {
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void showInformations(Filme filme) {
+        System.out.println("ID: " + filme.getId());
+        System.out.println("Nome: " + filme.getNome());
+        System.out.println("Data Lançamento: " + filme.getDataLancamentoFormatada());
+        System.out.println("Orçamento: R$" + filme.getOrcamento().toString().replace(".", ","));
+        System.out.println("Descrição: " + filme.getDescricao());
+        System.out.println();
+        if(!filme.getDiretores().isEmpty()) {
+            System.out.println("Diretores: ");
+            filme.getDiretores().forEach(diretor -> new DiretorView().showInformations(diretor));
+        }
+        if(!filme.getAtores().isEmpty()) {
+        System.out.println("Atores: ");
+        filme.getAtores().forEach(ator->new AtorView().showInformations(ator));}
+        System.out.println("---------------------------\n");
     }
 }
