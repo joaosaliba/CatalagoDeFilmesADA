@@ -16,7 +16,7 @@ import java.sql.Connection;
 
 public class CatalogoDeFilmesMain {
     public static void main(String[] args)  {
-        Connection connection = new DatabaseConnectionSingleton().getConnection();
+        Connection connection =  DatabaseConnectionSingleton.INSTANCE().getConexao();
         MenuView menu = new MenuView(new FilmeView(new FilmeService(new FilmeDB(connection))),
                                            new AtorView(new AtorService(new AtorDB(connection))),
                                            new DiretorView(new DiretorService( new DiretorDB(connection))));

@@ -17,8 +17,8 @@ public class FilmeService {
         this.repostiryFilme = repostiryFilme;
     }
 
-    private static Connection getConnection() {
-        return new DatabaseConnectionSingleton().getConnection();
+    private  Connection getConnection() {
+        return  DatabaseConnectionSingleton.INSTANCE().getConexao();
     }
 
     public void cadastrarFilme(Filme filme) {
