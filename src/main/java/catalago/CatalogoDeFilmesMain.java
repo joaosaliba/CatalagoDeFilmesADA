@@ -17,9 +17,11 @@ import java.sql.Connection;
 public class CatalogoDeFilmesMain {
     public static void main(String[] args)  {
         Connection connection =  new DatabaseConnection().getConexao();
-        MenuView menu = new MenuView(new FilmeView(new FilmeService(new FilmeDB(connection))),
-                                           new AtorView(new AtorService(new AtorDB(connection))),
-                                           new DiretorView(new DiretorService( new DiretorDB(connection))));
+        AtorDB atorDB = new AtorDB(connection);
+        DiretorDB diretorDB = new DiretorDB(connection);
+        MenuView menu = new MenuView(new FilmeView(new FilmeService(new FilmeDB(connection),diretorDB,atorDB)),
+                                           new AtorView(new AtorService(atorDB)),
+                                           new DiretorView(new DiretorService( diretorDB)));
         menu.menuPrincipal();
     }
 

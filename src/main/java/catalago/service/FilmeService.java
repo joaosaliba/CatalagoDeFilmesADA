@@ -12,9 +12,13 @@ import java.util.List;
 
 public class FilmeService {
     private FilmeDB repostiryFilme;
+    private DiretorDB diretorRepository;
+    private AtorDB atorRepository;
 
-    public FilmeService(FilmeDB repostiryFilme) {
+    public FilmeService(FilmeDB repostiryFilme, DiretorDB diretorRepository, AtorDB atorRepository) {
         this.repostiryFilme = repostiryFilme;
+        this.diretorRepository = diretorRepository;
+        this.atorRepository = atorRepository;
     }
 
     private static Connection getConnection() {
@@ -38,8 +42,8 @@ public class FilmeService {
         try {
             List<Filme> filmes = this.repostiryFilme.getAll();
             for (Filme filme : filmes) {
-                filme.setDiretores(new DiretorDB(getConnection()).getByFilmeId(filme.getId()));
-                filme.setAtores(new AtorDB(getConnection()).getByFilmeId(filme.getId()));
+                filme.setDiretores(this.diretorRepository.getByFilmeId(filme.getId()));
+                filme.setAtores(this.atorRepository.getByFilmeId(filme.getId()));
             }
 
             return filmes;
@@ -56,8 +60,8 @@ public class FilmeService {
             List<Filme> filmes = this.repostiryFilme.getByName(nome);
 
             for (Filme filme : filmes) {
-                filme.setDiretores(new DiretorDB(getConnection()).getByFilmeId(filme.getId()));
-                filme.setAtores(new AtorDB(getConnection()).getByFilmeId(filme.getId()));
+                filme.setDiretores(this.diretorRepository.getByFilmeId(filme.getId()));
+                filme.setAtores(this.atorRepository.getByFilmeId(filme.getId()));
             }
             return filmes;
 
@@ -71,8 +75,8 @@ public class FilmeService {
 
         try {
             Filme filme = this.repostiryFilme.getByID(ID);
-            filme.setDiretores(new DiretorDB(getConnection()).getByFilmeId(ID));
-            filme.setAtores(new AtorDB(getConnection()).getByFilmeId(ID));
+            filme.setDiretores(this.diretorRepository.getByFilmeId(ID));
+            filme.setAtores(this.atorRepository.getByFilmeId(ID));
 
             return filme;
 
