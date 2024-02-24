@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
-public class DatabaseConnectionSingleton {
+public class DatabaseConnection {
     private static Connection conexao = null;
     private final String url = "jdbc:postgresql://localhost:5432/catalagoFilme?currentSchema=catalago";
     private final String user = "catalagoFilmeADA";
@@ -19,19 +19,15 @@ public class DatabaseConnectionSingleton {
             }
         });
     }
-   private static final DatabaseConnectionSingleton INSTANCE = new DatabaseConnectionSingleton();
-    private DatabaseConnectionSingleton() {
-        conexao = makeConnection();
-    }
 
-    private Connection makeConnection()  {
+
+    public Connection getConexao()  {
 
         try {
             Class.forName("org.postgresql.Driver");
 
             conexao = DriverManager.getConnection(url, user, pass);
             conexao.setAutoCommit(false);
-            System.out.println("Conexão aberta.");
 
 
         } catch (SQLException | ClassNotFoundException e) {
@@ -54,11 +50,7 @@ public class DatabaseConnectionSingleton {
         }
     }
 
-    public static DatabaseConnectionSingleton INSTANCE() {
-        return INSTANCE;
-    }
 
-    public  Connection getConexao() {
-        return conexao;
-    }
+
+
 }

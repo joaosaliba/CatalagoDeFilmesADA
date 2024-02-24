@@ -1,6 +1,6 @@
 package catalago;
 
-import catalago.database.DatabaseConnectionSingleton;
+import catalago.database.DatabaseConnection;
 import catalago.repository.AtorDB;
 import catalago.repository.DiretorDB;
 import catalago.repository.FilmeDB;
@@ -16,7 +16,7 @@ import java.sql.Connection;
 
 public class CatalogoDeFilmesMain {
     public static void main(String[] args)  {
-        Connection connection =  DatabaseConnectionSingleton.INSTANCE().getConexao();
+        Connection connection =  new DatabaseConnection().getConexao();
         MenuView menu = new MenuView(new FilmeView(new FilmeService(new FilmeDB(connection))),
                                            new AtorView(new AtorService(new AtorDB(connection))),
                                            new DiretorView(new DiretorService( new DiretorDB(connection))));

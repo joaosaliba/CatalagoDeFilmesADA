@@ -1,16 +1,10 @@
 package view;
 
-import catalago.abstracts.Pessoa;
-import catalago.database.DatabaseConnectionSingleton;
 import catalago.models.Filme;
-import catalago.repository.AtorDB;
-import catalago.repository.DiretorDB;
 import catalago.service.FilmeService;
 import catalago.utils.ScannerSingleton;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;

@@ -1,6 +1,5 @@
 package catalago.repository;
 
-import catalago.database.DatabaseConnectionSingleton;
 import catalago.models.Ator;
 import catalago.repository.intefaces.DBInterface;
 

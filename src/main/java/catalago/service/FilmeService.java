@@ -1,6 +1,6 @@
 package catalago.service;
 
-import catalago.database.DatabaseConnectionSingleton;
+import catalago.database.DatabaseConnection;
 import catalago.models.Filme;
 import catalago.repository.AtorDB;
 import catalago.repository.DiretorDB;
@@ -17,8 +17,8 @@ public class FilmeService {
         this.repostiryFilme = repostiryFilme;
     }
 
-    private  Connection getConnection() {
-        return  DatabaseConnectionSingleton.INSTANCE().getConexao();
+    private static Connection getConnection() {
+        return new DatabaseConnection().getConexao();
     }
 
     public void cadastrarFilme(Filme filme) {
